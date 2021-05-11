@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "943254601908",
+    "firebase_url": "https://fir-basics-3c6aa-default-rtdb.firebaseio.com",
+    "project_id": "fir-basics-3c6aa",
+    "storage_bucket": "fir-basics-3c6aa.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:943254601908:android:d90f2eea1e3f7ad861d7e1",
+        "android_client_info": {
+          "package_name": "com.olxclone"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "943254601908-hufmio5hlpkqhn2qf8j25hsesed9nho3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBKK7DFrkJliP1XP1baEtKwRYs1nxXsqVc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "943254601908-hufmio5hlpkqhn2qf8j25hsesed9nho3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
