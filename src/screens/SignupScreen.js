@@ -7,7 +7,7 @@ import auth from '@react-native-firebase/auth';
 // import messaging from '@react-native-firebase/messaging';
 
 
-const LoginScreen = ({ navigation }) => {
+const SignupScreen = ({ navigation }) => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
@@ -53,7 +53,7 @@ const LoginScreen = ({ navigation }) => {
                 />
                 <Button mode="contained" onPress={() => userSignup()}>
                     Signup
-                 </Button>
+                </Button>
                 <TouchableOpacity onPress={() => navigation.goBack()}><Text style={{ textAlign: "center" }}>already have an account?</Text></TouchableOpacity>
 
             </View>
@@ -75,4 +75,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default LoginScreen
+export default SignupScreen;
