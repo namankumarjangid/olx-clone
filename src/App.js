@@ -1,12 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
-  View,
-  Text,
-  StatusBar,
-} from 'react-native';
+import { SafeAreaView, StyleSheet, ScrollView, View, Text, StatusBar, } from 'react-native';
 import 'react-native-gesture-handler';
 import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
 import { NavigationContainer, DefaultTheme as DefaultThemeNav } from '@react-navigation/native';
@@ -64,7 +57,7 @@ const TabNavigator = () => {
           }
 
           return (
-            <View style={{ borderColor: "white", borderRadius: 30 }}>
+            <View style={{ borderColor: "white", borderRadius: 30, paddingTop: 5 }}>
               <Feather name={iconName} size={30} color={color} />
             </View>
           )
@@ -74,9 +67,7 @@ const TabNavigator = () => {
       tabBarOptions={{
         activeTintColor: 'deepskyblue',
         inactiveTintColor: 'gray',
-      }}
-
-    >
+      }}>
 
       <Tab.Screen name="Home" component={HomeScreen} options={{ title: "" }} />
       <Tab.Screen name="create" component={CreateAdScreen} options={{ title: "" }} />

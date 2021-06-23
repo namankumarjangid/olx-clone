@@ -34,7 +34,7 @@ const SignupScreen = ({ navigation }) => {
     return (
         <KeyboardAvoidingView behavior="position">
             <View style={styles.box1}>
-                <Image style={{ width: 200, height: 200 }} source={require('../assets/rnlogo.png')} />
+                <Image style={{ width: 200, height: 200 }} source={require('../images/rnlogo.png')} />
                 <Text style={styles.text}>Please Signup</Text>
             </View>
             <View style={styles.box2}>

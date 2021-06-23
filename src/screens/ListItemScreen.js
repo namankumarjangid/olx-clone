@@ -37,7 +37,7 @@ const ListItemScreen = () => {
         <Card.Cover source={{ uri: item.image }} />
         <Card.Actions>
           <Button>{item.price}</Button>
-          <Button onPress={() => openDial()}>call seller</Button>
+          <Button onPress={() => openDial(item.phone)}>call seller</Button>
         </Card.Actions>
       </Card>
     )

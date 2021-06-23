@@ -14,6 +14,9 @@ const CreateAdScreen = () => {
     const [phone, setPhone] = useState('')
     const [image, setImage] = useState("")
 
+
+    // uncomment this 👇🏼 stuff for usign firebase admin cloud messaging refere to the folder node-message
+
     // const sendNoti = () => {
     //     firestore().collection('usertoken').get().then(querySnap => {
     //         const userDevicetoken = querySnap.docs.map(docSnap => {
@@ -69,7 +72,6 @@ const CreateAdScreen = () => {
                 },
                 () => {
                     // Handle successful uploads on complete
-                    // For instance, get the download URL: https://firebasestorage.googleapis.com/...
                     uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
 
                         setImage(downloadURL)
@@ -120,10 +122,10 @@ const CreateAdScreen = () => {
 
             <Button icon="camera" mode="contained" onPress={() => openCamera()}>
                 upload Image
-                 </Button>
+            </Button>
             <Button disabled={image ? false : true} mode="contained" onPress={() => postData()}>
                 Post
-                 </Button>
+            </Button>
         </View>
     )
 }

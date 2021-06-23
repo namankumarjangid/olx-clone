@@ -23,7 +23,7 @@ const LoginScreen = ({ navigation }) => {
     return (
         <KeyboardAvoidingView behavior="position">
             <View style={styles.box1}>
-                <Image style={{ width: 200, height: 200 }} source={require('../assets/rnlogo.png')} />
+                <Image style={{ width: 200, height: 200 }} source={require('../images/rnlogo.png')} />
                 <Text style={styles.text}>please login to continue!</Text>
             </View>
             <View style={styles.box2}>
@@ -42,7 +42,7 @@ const LoginScreen = ({ navigation }) => {
                 />
                 <Button mode="contained" onPress={() => userLogin()}>
                     Login
-                 </Button>
+                </Button>
                 <TouchableOpacity onPress={() => navigation.navigate("signup")}><Text style={{ textAlign: "center" }}>Dont have a account ?</Text></TouchableOpacity>
 
             </View>
