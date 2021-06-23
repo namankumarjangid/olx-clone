@@ -1,30 +1,30 @@
-import React, { useState, useEffect } from 'react'
-import { View, Text, FlatList, StyleSheet } from 'react-native'
-import auth from '@react-native-firebase/auth'
-
+import React, { useEffect, useState } from 'react'
+import { View, Text, FlatList, StyleSheet, Linking, Platform } from 'react-native'
 import { Avatar, Button, Card, Title, Paragraph } from 'react-native-paper';
-import firestore from '@react-native-firebase/firestore'
+import firestore from '@react-native-firebase/firestore';
 
-
-const AccountScreen = () => {
+const HomeScreen = () => {
   const [items, setItems] = useState([])
-  const [loading, setLoading] = useState(false)
+
   const getDetails = async () => {
-    const querySnap = await firestore().collection('ads')
-      .where('uid', '==', auth().currentUser.uid)
-      .get()
+    const querySnap = await firestore().collection('ads').get()
     const result = querySnap.docs.map(docSnap => docSnap.data())
     // console.log(result)
     setItems(result)
   }
-
+  const openDial = (phone) => {
+    if (Platform.OS === 'android') {
+      Linking.openURL(`tel:${phone}`)
+    } else {
+      Linking.openURL(`telprompt:${phone}`)
+    }
+  }
   useEffect(() => {
     getDetails()
     return () => {
       console.log("cleanup")
     }
   }, [])
-
 
   const renderItem = (item) => {
     return (
@@ -37,39 +37,31 @@ const AccountScreen = () => {
         <Card.Cover source={{ uri: item.image }} />
         <Card.Actions>
           <Button>{item.price}</Button>
+          <Button onPress={() => openDial(item.phone)}>call seller</Button>
         </Card.Actions>
       </Card>
     )
   }
-
   return (
-    <View style={{ flex: 1 }}>
-      <View style={{ height: '30%', justifyContent: "space-evenly", alignItems: "center" }}>
-        <Text style={{ fontSize: 22 }}>{auth().currentUser.email}</Text>
-        <Button mode="contained" onPress={() => auth().signOut()}>Logout</Button>
-
-
-        <Text style={{ fontSize: 22 }}>Your ads!</Text>
-      </View>
-
+    <View>
       <FlatList
-        data={items}
+        data={items.reverse()}
         keyExtractor={(item) => item.phone}
         renderItem={({ item }) => renderItem(item)}
-        onRefresh={() => {
-          setLoading(true)
-          getDetails()
-          setLoading(false)
-        }}
-        refreshing={loading}
+
       />
     </View>
   )
 }
+
+
 const styles = StyleSheet.create({
   card: {
     margin: 10,
     elevation: 2
   }
 });
-export default AccountScreen
+
+
+
+export default HomeScreen

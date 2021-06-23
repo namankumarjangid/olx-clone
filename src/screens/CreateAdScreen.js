@@ -14,7 +14,7 @@ const CreateAdScreen = () => {
     const [phone, setPhone] = useState('')
     const [image, setImage] = useState("")
 
-
+    // rnfirebase.io -  website tutorial
     // uncomment this 👇🏼 stuff for usign firebase admin cloud messaging refere to the folder node-message
 
     // const sendNoti = () => {
@@ -35,27 +35,7 @@ const CreateAdScreen = () => {
     //     //     // })
     //     // })
     // }
-    const postData = async () => {
 
-        try {
-            await firestore().collection('ads')
-                .add({
-                    name,
-                    desc,
-                    year,
-                    price,
-                    phone,
-                    image,
-                    uid: auth().currentUser.uid
-                })
-            Alert.alert("posted your Ad!")
-
-        } catch (err) {
-            Alert.alert("something went wrong.try again")
-        }
-        // sendNoti()
-
-    }
 
     const openCamera = () => {
         launchImageLibrary({ quality: 0.5 }, (fileobj) => {
@@ -80,6 +60,38 @@ const CreateAdScreen = () => {
             );
         })
     }
+
+
+    const postData = async () => {
+
+        try {
+            await firestore().collection('ads')
+                .add({
+                    name,
+                    desc,
+                    year,
+                    price,
+                    phone,
+                    image,
+                    uid: auth().currentUser.uid
+                })
+            Alert.alert("posted your Ad!")
+
+            // will clear the input fields after submission
+            setName('');
+            setDesc('');
+            setPhone('');
+            setPrice('');
+            setYear('');
+            setImage('')
+
+        } catch (err) {
+            Alert.alert("something went wrong.try again")
+        }
+        // sendNoti()
+
+    }
+
 
     return (
         <View style={styles.container}>

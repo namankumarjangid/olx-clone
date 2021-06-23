@@ -8,8 +8,8 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import LoginScreen from './screens/LoginScreen'
 import SignupScreen from './screens/SignupScreen'
 import CreateAdScreen from './screens/CreateAdScreen'
-import HomeScreen from './screens/ListItemScreen'
-import AccountScreen from './screens/AccountScreen'
+import HomeScreen from './screens/HomeScreen'
+import ProfileScreen from './screens/ProfileScreen'
 import Feather from 'react-native-vector-icons/Feather';
 import auth from '@react-native-firebase/auth'
 
@@ -71,7 +71,7 @@ const TabNavigator = () => {
 
       <Tab.Screen name="Home" component={HomeScreen} options={{ title: "" }} />
       <Tab.Screen name="create" component={CreateAdScreen} options={{ title: "" }} />
-      <Tab.Screen name="account" component={AccountScreen} options={{ title: "" }} />
+      <Tab.Screen name="account" component={ProfileScreen} options={{ title: "" }} />
 
     </Tab.Navigator>
   )
