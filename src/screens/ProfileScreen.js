@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { View, Text, FlatList, StyleSheet } from 'react-native'
 import auth from '@react-native-firebase/auth'
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+
 
 import { Avatar, Button, Card, Title, Paragraph } from 'react-native-paper';
 import firestore from '@react-native-firebase/firestore'
@@ -9,6 +11,7 @@ import firestore from '@react-native-firebase/firestore'
 const ProfileScreen = () => {
   const [items, setItems] = useState([])
   const [loading, setLoading] = useState(false)
+
   const getDetails = async () => {
     const querySnap = await firestore().collection('ads')
       .where('uid', '==', auth().currentUser.uid)
@@ -37,6 +40,8 @@ const ProfileScreen = () => {
         <Card.Cover source={{ uri: item.image }} />
         <Card.Actions>
           <Button>{item.price}</Button>
+          <MaterialIcons name="delete" size={17} color="red" />
+
         </Card.Actions>
       </Card>
     )

@@ -31,6 +31,7 @@ const MyTheme = {
 
 const Stack = createStackNavigator()
 const Tab = createBottomTabNavigator();
+
 const AuthNavigator = () => {
   return (
     <Stack.Navigator>

@@ -13,6 +13,9 @@ const CreateAdScreen = () => {
     const [price, setPrice] = useState('')
     const [phone, setPhone] = useState('')
     const [image, setImage] = useState("")
+    const [uploading, setUploading] = useState(false);
+    const [transferred, setTransferred] = useState(0);
+
 
     // rnfirebase.io -  website tutorial
     // uncomment this 👇🏼 stuff for usign firebase admin cloud messaging refere to the folder node-message
@@ -40,20 +43,24 @@ const CreateAdScreen = () => {
     const openCamera = () => {
         launchImageLibrary({ quality: 0.5 }, (fileobj) => {
             //    console.log(fileobj)
-            const uploadTask = storage().ref().child(`/items/${Date.now()}`).putFile(fileobj.uri)
-            uploadTask.on('state_changed',
-                (snapshot) => {
+            setUploading(true);
+            setTransferred(0);
+            const uploadImage = storage().ref().child(`/items/${Date.now()}`).putFile(fileobj.uri)
 
-                    var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                    if (progress == 100) { alert("uploaded") }
-                },
+            uploadImage.on('state_changed', (snapshot) => {
+                setTransferred(
+                    Math.round(snapshot.bytesTransferred / snapshot.totalBytes) * 100,
+                );
+                // var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                // if (progress == 100) { alert("uploaded") }
+            },
                 (error) => {
                     alert("something went wrong")
                 },
                 () => {
                     // Handle successful uploads on complete
-                    uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
-
+                    uploadImage.snapshot.ref.getDownloadURL().then((downloadURL) => {
+                        setUploading(false);
                         setImage(downloadURL)
                     });
                 }
@@ -77,7 +84,7 @@ const CreateAdScreen = () => {
                 })
             Alert.alert("posted your Ad!")
 
-            // will clear the input fields after submission
+            // will clear the input fields after submit
             setName('');
             setDesc('');
             setPhone('');
@@ -135,9 +142,20 @@ const CreateAdScreen = () => {
             <Button icon="camera" mode="contained" onPress={() => openCamera()}>
                 upload Image
             </Button>
-            <Button disabled={image ? false : true} mode="contained" onPress={() => postData()}>
+            {
+                uploading ? (
+                    <>
+                        <Text style={styles.text}>{transferred} % Completed!</Text>
+                    </>
+                ) : (
+                    <Button disabled={image ? false : true} mode="contained" onPress={() => postData()}>
+                        Post
+                    </Button>
+                )
+            }
+            {/* <Button disabled={image ? false : true} mode="contained" onPress={() => postData()}>
                 Post
-            </Button>
+            </Button> */}
         </View>
     )
 }
