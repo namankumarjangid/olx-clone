@@ -41,6 +41,7 @@ const CreateAdScreen = () => {
 
 
     const openCamera = () => {
+
         launchImageLibrary({ quality: 0.5 }, (fileobj) => {
             //    console.log(fileobj)
             setUploading(true);
